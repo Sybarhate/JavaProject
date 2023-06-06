@@ -9,13 +9,18 @@ import view.LocationSearchView;
 public class RoleManager {
 
     public void checkRole() throws DAOException {
+        Operations operations = new Operations();
         if (Session.getCurrentUser().getRoleId() == AppConstant.ROLE_SYSTEM_ADMIN) {
         } else if (Session.getCurrentUser().getRoleId() == AppConstant.ROLE_CINEMA_USER) {
-            Operations operations = new Operations();
             operations.checkCinemaUserRoleOperations();
         } else if (Session.getCurrentUser().getRoleId() == AppConstant.ROLE_CUSTOMER) {
-            LocationSearchView locationSearchView=new LocationSearchView();
-            locationSearchView.takeLocation();
+            operations.customerOperation();
+//            LocationSearchView locationSearchView=new LocationSearchView();
+//            locationSearchView.takeLocation();
+//            MovieManager movieManager=new MovieManager();
+//            movieManager.listOfMovieDetails();
+//            CinemaManager cinemaManager=new CinemaManager();
+//            cinemaManager.cinemaDetailsByCity();
 
         }
     }

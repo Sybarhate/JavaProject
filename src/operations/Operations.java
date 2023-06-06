@@ -7,6 +7,7 @@ import Manager.ScreenManager;
 import constant.AppConstant;
 import exception.DAOException;
 import view.CinemaView;
+import view.LocationSearchView;
 import view.ScreenView;
 
 public class Operations {
@@ -50,32 +51,15 @@ public class Operations {
         }
         }while (choice!=6);
     }
-//        public void screenChoiceList(int choice) throws DAOException {
-//            switch(choice)
-//            {
-//            case AppConstant.ADD_SCREEN:
-//                ScreenView screenView = new ScreenView();
-//                ScreenManager screenManager = new ScreenManager();
-//                row = screenView.takeRow();
-//                column = screenView.takeColumn();
-//                screenManager.screenData(cinemaManager.cinemaId(), row, column);
-//                ScreenLayoutManager screenLayoutManager = new ScreenLayoutManager();
-//                screenLayoutManager.generateNumber(row, column);
-//                screenLayoutManager.screenLayoutDisplayData(row, column);
-//                screenLayoutManager.seatNumberToBook();
-//                break;
-//                case AppConstant.ADD_MOVIE:
-//                    MovieManager movieManager=new MovieManager();
-//                    movieManager.movieDetails();
-//                break;
-//                case AppConstant.BACK:
-//                break;
-//            case AppConstant.EXIT:
-//                break;
-//            default:
-//                System.out.println("Invalid choice...");
-//
-//        }
+        public void customerOperation() throws DAOException {
+            LocationSearchView locationSearchView=new LocationSearchView();
+           int id= locationSearchView.takeLocation();
+            MovieManager movieManager=new MovieManager();
+            movieManager.listOfMovieDetails();
+            CinemaManager cinemaManager=new CinemaManager();
+            cinemaManager.cinemaDetailsByCity(id);
+
+        }
 
 }
 

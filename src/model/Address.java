@@ -19,6 +19,9 @@ public class Address {
         this.pincode = pincode;
     }
 
+    public Address(String address_line) {
+        this.address_line = address_line;
+    }
     public int getAddress_id() {return address_id;}
 
     public void setAddress_id(int address_id) {

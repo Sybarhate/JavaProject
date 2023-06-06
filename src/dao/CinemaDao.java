@@ -102,7 +102,7 @@ public class CinemaDao {
         try {
             String sql = "select id FROM cinema where user_id=?";
             PreparedStatement statement = DBConnection.getInstance().getDBConnection().prepareStatement(sql);
-           statement.setInt(1,userId);
+            statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -113,7 +113,36 @@ public class CinemaDao {
         }
         return cinema;
     }
+
+    public static List<Cinema> getCinemasByCity(int cityId) throws DAOException {
+        List<Cinema> cinemas = new ArrayList<>();
+        try {
+            String sql = "SELECT c.*,a.*,ci.* FROM cinema c LEFT JOIN  movie m ON m.cinema_id = c.id JOIN " +
+                    "address a ON a.address_id=c.address_id JOIN city ci ON ci.city_id=a.city_id" +
+                    " WHERE ci.city_id =? GROUP by c.id;";
+            PreparedStatement statement = DBConnection.getInstance().getDBConnection().prepareStatement(sql);
+            statement.setInt(1, cityId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Cinema cinema = new Cinema();
+                cinema.setId(resultSet.getInt("id"));
+                cinema.setName(resultSet.getString("name"));
+                Address address=new Address(resultSet.getString(8));
+                cinema.setAddress(address);
+                City city=new City(resultSet.getInt(13),resultSet.getString(14));
+                cinema.setCity(city);
+                cinemas.add(cinema);
+            }
+        }catch (SQLException e)
+        {
+            throw new DAOException("error ");
+        }
+        return cinemas;
+    }
+
 }
+
+
 
 //    public Cinema getCinemaId() throws DAOException {
 //        Cinema cinema=new Cinema();

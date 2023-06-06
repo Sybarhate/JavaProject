@@ -4,6 +4,7 @@ import common.Session;
 import dao.CinemaDao;
 import exception.DAOException;
 import model.Cinema;
+import model.City;
 import view.CinemaView;
 
 import java.util.List;
@@ -20,6 +21,11 @@ public class CinemaManager {
 
     }
 
+    public void cinemaDetailsByCity(int id) throws DAOException {
+        List<Cinema> cinema = cinemaDao.getCinemasByCity(id);
+        cinemaView.printCinemaDetails(cinema);
+
+    }
 
     public Cinema cinemaId() throws DAOException {
     Cinema cinema=cinemaDao.getCinemaId(Session.getCurrentUser().getUserId());

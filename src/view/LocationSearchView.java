@@ -12,7 +12,7 @@ public class LocationSearchView {
     AddressDao addressDao=new AddressDao();
     AddressView addressView=new AddressView();
 
-    public void takeLocation() throws DAOException {
+    public int takeLocation() throws DAOException {
         System.out.println("Please Select State ");
         List<State> stateList = addressDao.getState();
         addressView.displayStateDetails(stateList);
@@ -28,5 +28,6 @@ public class LocationSearchView {
         int cityId = (MenuHandler.getNumberInput());
         City city=new City();
         city.setCityId(cityId);
+        return cityId;
     }
 }

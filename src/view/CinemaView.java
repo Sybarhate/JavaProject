@@ -95,10 +95,8 @@ public class CinemaView {
             System.out.println("Cinema ID: " + cinema.getId());
             System.out.println("Name: " + cinema.getName());
             System.out.println("Address Line: " + cinema.getAddress().getAddress_line());
-            System.out.println("City ID: " + cinema.getCity().getCityId());
             System.out.println("City Name: " + cinema.getCity().getCityName());
-            System.out.println("State ID: " + cinema.getState().getStateId());
-            System.out.println("State Name: " + cinema.getState().getStateName());
+           // System.out.println("State Name: " + cinema.getState().getStateName());
             System.out.println("----------------------------------");
         }
     }
